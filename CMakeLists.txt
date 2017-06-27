@@ -20,6 +20,11 @@ if (false)
     endforeach()
 endif()
 
+message(STATUS "Generating release.h...")
+execute_process(
+  COMMAND sh -c ./mkreleasehdr.sh
+  WORKING_DIRECTORY ${REDIS_ROOT}/src/
+)
 add_subdirectory(deps)
 
 set(SRC_SERVER
