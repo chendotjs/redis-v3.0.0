@@ -44,6 +44,9 @@ struct sdshdr {
     char buf[];
 };
 
+/**
+ * sdshdr包含了柔性数组, 通过计算struct偏移得到sdshdr地址
+ */
 static inline size_t sdslen(const sds s) {
     struct sdshdr *sh = (void*)(s-(sizeof(struct sdshdr)));
     return sh->len;
