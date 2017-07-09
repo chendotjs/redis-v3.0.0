@@ -47,7 +47,7 @@
  *
  * You can print the string with printf() as there is an implicit \0 at the
  * end of the string. However the string is binary safe and can contain
- * \0 characters in the middle, as the length is stored in the sds header. */
+ * \0 characters in the middle, as the length is stored in the sds header. */ /* 二进制安全的原因 */
 sds sdsnewlen(const void *init, size_t initlen) {
     struct sdshdr *sh;
 
@@ -135,7 +135,7 @@ sds sdsMakeRoomFor(sds s, size_t addlen) {
     len = sdslen(s);
     sh = (void*) (s-(sizeof(struct sdshdr)));
     newlen = (len+addlen);
-    if (newlen < SDS_MAX_PREALLOC)
+    if (newlen < SDS_MAX_PREALLOC)  /* 扩大空间的策略 */
         newlen *= 2;
     else
         newlen += SDS_MAX_PREALLOC;

@@ -45,6 +45,7 @@ struct sdshdr {
 };
 
 /**
+ * struct sdshdr *sh = (void*)(s-(sizeof(struct sdshdr))); 几乎每一个sds函数都用了这个套路
  * sdshdr包含了柔性数组, 通过计算struct偏移得到sdshdr地址
  */
 static inline size_t sdslen(const sds s) {
